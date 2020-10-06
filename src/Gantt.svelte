@@ -217,6 +217,9 @@
 
         api.registerEvent('tasks', 'move');
         api.registerEvent('tasks', 'select');
+        /** //TODO: Custom task event */
+        api.registerEvent('tasks', 'click');
+
         api.registerEvent('tasks', 'switchRow');
         api.registerEvent('tasks', 'moveEnd');
         api.registerEvent('tasks', 'changed');
@@ -233,6 +236,17 @@
             selectionManager.selectSingle(taskId);
         }
         api.tasks.raise.select($taskStore.entities[taskId]);
+    });
+    
+    /** //TODO: Custom task event */
+    onDelegatedEvent('click', 'data-task-content', (event, data, target) => {
+        const taskId = +data;
+        /* if (event.ctrlKey) {
+            selectionManager.toggleSelection(taskId);
+        } else {
+            selectionManager.selectSingle(taskId);
+        } */
+        api.tasks.raise.click($taskStore.entities[taskId]);
     });
 
     onDelegatedEvent('mouseover', 'data-row-id', (event, data, target) => {

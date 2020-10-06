@@ -282,7 +282,9 @@
   {#if model.amountDone}
   <div class="sg-task-background" style="width:{model.amountDone}%" />
   {/if}
-  <div class="sg-task-content">
+  <div class="sg-task-content"
+    data-task-content="{model.id}"
+  >
     {#if model.html}
       {@html model.html}
     {:else if $taskContent}
