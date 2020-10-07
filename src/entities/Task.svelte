@@ -282,17 +282,15 @@
   {#if model.amountDone}
   <div class="sg-task-background" style="width:{model.amountDone}%" />
   {/if}
-  <div class="sg-task-content"
-    data-task-content="{model.id}"
-  >
+  <div class="sg-task-content">
     {#if model.html}
       {@html model.html}
     {:else if $taskContent}
       {@html $taskContent(this)}
-    {:else}{model.label}{/if}
+    {:else}<div class="sg-task-label" data-task-label="{model.id}">{model.label}</div>{/if}
     <!-- <span class="debug">x:{_position.x} y:{_position.y}, x:{left} y:{top}</span> -->
     {#if model.showButton}
-      <span class="sg-task-button {model.buttonClasses}" on:click={onclick}>
+      <span class="sg-task-button {model.buttonClasses}" data-task-button="{model.id}">
         {@html model.buttonHtml}
       </span>
     {/if}

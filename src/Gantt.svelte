@@ -239,13 +239,8 @@
     });
     
     /** //TODO: Custom task event */
-    onDelegatedEvent('click', 'data-task-content', (event, data, target) => {
+    onDelegatedEvent('click', 'data-task-button', (event, data, target) => {
         const taskId = +data;
-        /* if (event.ctrlKey) {
-            selectionManager.toggleSelection(taskId);
-        } else {
-            selectionManager.selectSingle(taskId);
-        } */
         api.tasks.raise.click($taskStore.entities[taskId]);
     });
 
@@ -258,6 +253,8 @@
     });
     
     onDestroy(() => {
+        offDelegatedEvent('click', 'data-task-button');
+        offDelegatedEvent('click', 'data-task-label');
         offDelegatedEvent('click', 'data-task-id');
         offDelegatedEvent('click', 'data-row-id');
     });
